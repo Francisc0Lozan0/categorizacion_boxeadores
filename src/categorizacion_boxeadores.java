@@ -1,8 +1,18 @@
 import java.util.*;
 
 public class categorizacion_boxeadores {
-    public static Scanner entrada = new Scanner(System.in);
+    public static Scanner entrada = new Scanner(System.in); // generar scanner
     public static List<String> categorias = new ArrayList<>();
+
+    // Categorización-metodo
+    // Descripción: el método permite ingresar el numero de boxeadores a evaluar,
+    // que ingresen los pesos, llama a el método categorizar peso, y muestra en
+    // pantalla según el peso a que categoría pertenece y en caso de ingresar uno no
+    // registrado muestra mensaje
+    // Precondición: no requiere variable para su accionamiento
+    // @param <numBoxeadores> variable que almacena cantidad de voceadores a evaluar
+    // @param <peso> peso ingresado por boxeador
+    // @return None
 
     public static void categorizacion() {
         System.out.println("Ingrese el número de boxeadores:");
@@ -21,6 +31,13 @@ public class categorizacion_boxeadores {
             }
         }
     }
+
+    // Categorizarpeso metodo
+    // descripción: categoriza a través de condicionales a que categoría pertenece
+    // cada peso registrado luego de ser llamado.
+    // precondición: necesita tener previamente el valor del peso
+    // @param: None
+    // @return: null, retorna la categoría a la que pertenece el peso ingresado
 
     public static String categorizarPeso(float peso) {
         if (peso >= 91) {
@@ -47,19 +64,27 @@ public class categorizacion_boxeadores {
         return null;
     }
 
+    // Buscar- metodo
+    // Descripción: solicita que el usuario ingrese la categoría a consultar, el
+    // miso muestra el número de individuos en la categoría seleccionada, en caso de
+    // ingresar un numero valido hace un ciclo hasta que el mismo sea válido.
+    // Precondición: no requiere variable para su accionamiento
+    // @param: <opción> la categoría seleccionada por el individuo
+    // @return: <> cantidad de individuos en categoría
+
     public static void buscar() {
         System.out.println("Qué categoría desea revisar:");
         System.out.println(
                 "1.Peso superpesado\n2.Peso pesado\n3.Peso semipesado\n4.Peso welter\n5.Peso superligero\n6.Peso ligero\n7.Peso pluma\n8.Peso gallo\n9.Peso mosca\n10.Peso minimosca");
         int opcion = entrada.nextInt();
 
-        if (opcion < 1 || opcion > 10) {
+        if (opcion < 1 || opcion > 10) {// en caso de cumplir las condiciones se activa su interio
             System.out.println("Opción no válida");
             return;
         }
 
         String categoria = categorias.get(opcion - 1);
-        int conteo = Collections.frequency(categorias, categoria);
+        int conteo = Collections.frequency(categorias, categoria); // calcula la frecuencia de la categoria
 
         System.out.println("La categoría " + categoria + " tiene " + conteo + " individuos");
     }
@@ -70,10 +95,10 @@ public class categorizacion_boxeadores {
 
         while (corte) {
             System.out.println(
-                    "¿Qué operación desea realizar?\n1. Analizar pesos\n2. Analizar boxeadores en categoría\n3. Salir");
+                    "¿Qué operación desea realizar?\n1. Analizar pesos\n2. Analizar boxeadores en categoría\n3. Salir"); // manu
             int opera_menu = entrada.nextInt();
 
-            switch (opera_menu) {
+            switch (opera_menu) { // operaciones
                 case 1:
                     categorizacion();
                     break;
@@ -90,6 +115,6 @@ public class categorizacion_boxeadores {
             }
         }
 
-        entrada.close();
+        entrada.close(); // cerrar el scanner
     }
 }
